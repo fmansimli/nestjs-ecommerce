@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: pgadmin
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - pg-net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@test.com
+      PGADMIN_DEFAULT_PASSWORD: pgadminpassword
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - '8080:80'
+    depends_on:
+      - db
+    networks:
+      - pg-net
+
+volumes:
+  db-data:
+  pgadmin-data:
+
+networks:
+  pg-net:
+    driver: bridge
