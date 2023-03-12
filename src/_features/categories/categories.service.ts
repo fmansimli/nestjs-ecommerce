@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/core';
 
-import { QueryCategoryDto, createCategoryDto, UpdateCategoryDto } from './dtos';
+import { QueryCategoryDto, createCategoryDto } from './dtos';
 import { Category } from './entities/category.entity';
 
 @Injectable()
@@ -17,11 +17,18 @@ export class CategoriesService {
   }
 
   async findById(id: number, _query?: QueryCategoryDto) {
-    const ctg = await this.repo.findOne({ id });
+    const { fields, populate } = _query;
+    const ctg = await this.repo.findOne(
+      { id },
+      {
+        populate: populate as any,
+        fields: fields as any,
+      },
+    );
     return ctg;
   }
 
-  async create(category: any) {
+  async create(category: createCategoryDto) {
     const newCategory = this.repo.create(category);
     await this.repo.persistAndFlush(newCategory);
     return newCategory;
@@ -41,7 +48,7 @@ export class CategoriesService {
     if (!category) return null;
     category.locales.removeAll();
     this.repo.remove(category);
-    this.repo.flush();
+    await this.repo.flush();
     return category;
   }
 }

@@ -1,19 +1,16 @@
-import { IsString, MinLength, MaxLength, IsOptional } from 'class-validator';
+import { IsString, MinLength, IsOptional } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class QueryCategoryDto {
   @IsOptional()
   @IsString()
-  @MinLength(5)
-  @MaxLength(50)
-  name?: string;
+  @MinLength(1)
+  @Transform(({ value }) => value.split(','))
+  populate?: string[];
 
   @IsOptional()
   @IsString()
-  @MinLength(4)
-  populate?: string;
-
-  @IsOptional()
-  @IsString()
-  @MinLength(4)
-  fields?: string;
+  @MinLength(1)
+  @Transform(({ value }) => value.split(','))
+  fields: string[];
 }

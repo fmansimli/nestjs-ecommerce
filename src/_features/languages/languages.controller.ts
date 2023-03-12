@@ -1,34 +1,49 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common/exceptions';
+
 import { LanguagesService } from './languages.service';
 import { CreateLanguageDto } from './dto/create-language.dto';
 import { UpdateLanguageDto } from './dto/update-language.dto';
+import { QueryLangDto } from './dto';
 
 @Controller('languages')
 export class LanguagesController {
   constructor(private readonly languagesService: LanguagesService) {}
 
   @Post()
-  create(@Body() createLanguageDto: CreateLanguageDto) {
-    return this.languagesService.create(createLanguageDto);
+  create(@Body() body: CreateLanguageDto) {
+    return this.languagesService.create(body);
   }
 
   @Get()
-  findAll() {
-    return this.languagesService.findAll();
+  findAll(@Query() query?: QueryLangDto) {
+    return this.languagesService.findAll(query);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.languagesService.findOne(+id);
+  async findOne(@Param('id') id: number, @Query() query?: QueryLangDto) {
+    const language = await this.languagesService.findOne(id, query);
+    if (!language) {
+      throw new NotFoundException('Language not found!');
+    }
+    return language;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLanguageDto: UpdateLanguageDto) {
-    return this.languagesService.update(+id, updateLanguageDto);
+  async update(@Param('id') id: number, @Body() body: UpdateLanguageDto) {
+    const language = await this.languagesService.update(id, body);
+    if (!language) {
+      throw new NotFoundException('Language not found!');
+    }
+    return language;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.languagesService.remove(+id);
+  async remove(@Param('id') id: number) {
+    const language = await this.languagesService.remove(id);
+    if (!language) {
+      throw new NotFoundException('Language not found!');
+    }
+    return language;
   }
 }
