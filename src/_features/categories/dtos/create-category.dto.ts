@@ -1,4 +1,4 @@
-import { IsString, MinLength, MaxLength, ValidateNested,IsNumber } from 'class-validator';
+import { IsString, MinLength, MaxLength, ValidateNested, IsNumber } from 'class-validator';
 
 export class createCategoryDto {
   @ValidateNested({ each: true })

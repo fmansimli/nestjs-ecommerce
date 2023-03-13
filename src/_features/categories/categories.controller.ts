@@ -22,7 +22,7 @@ export class CategoriesController {
   }
 
   @Post()
-  async createCategory(@Body() body: createCategoryDto) {
+  async createCategory(@Body() body: any) {
     return this.categoriesService.create(body);
   }
 

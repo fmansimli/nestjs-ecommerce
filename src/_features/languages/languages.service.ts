@@ -19,6 +19,7 @@ export class LanguagesService {
     const { fields } = query;
 
     const languages = await this.repo.findAll({ fields: fields as any });
+
     return languages;
   }
 

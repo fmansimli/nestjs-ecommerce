@@ -10,14 +10,18 @@ export class CategoriesService {
   constructor(@InjectRepository(Category) private repo: EntityRepository<Category>) {}
 
   async find(query?: QueryCategoryDto) {
-    if (Object?.keys(query).length) {
-    }
-    const ctgs = await this.repo.findAll({ orderBy: { id: 'DESC' } });
+    const { fields, populate } = query || {};
+
+    const ctgs = await this.repo.findAll({
+      orderBy: { id: 'DESC' },
+      populate: populate as any,
+      fields: fields as any,
+    });
     return ctgs;
   }
 
   async findById(id: number, _query?: QueryCategoryDto) {
-    const { fields, populate } = _query;
+    const { fields, populate } = _query || {};
     const ctg = await this.repo.findOne(
       { id },
       {
@@ -46,6 +50,7 @@ export class CategoriesService {
   async deleteById(id: number) {
     const category = await this.repo.findOne({ id });
     if (!category) return null;
+
     category.locales.removeAll();
     this.repo.remove(category);
     await this.repo.flush();
