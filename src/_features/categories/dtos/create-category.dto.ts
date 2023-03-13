@@ -1,4 +1,4 @@
-import { IsString, MinLength, MaxLength, ValidateNested } from 'class-validator';
+import { IsString, MinLength, MaxLength, ValidateNested,IsNumber } from 'class-validator';
 
 export class createCategoryDto {
   @ValidateNested({ each: true })
@@ -15,8 +15,6 @@ class LocaleDto {
   @MinLength(10)
   description: string;
 
-  @IsString()
-  @MinLength(2)
-  @MaxLength(5)
+  @IsNumber()
   lang: number;
 }

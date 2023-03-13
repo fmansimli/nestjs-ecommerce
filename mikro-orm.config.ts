@@ -21,7 +21,7 @@ export default {
     disableForeignKeys: true,
     snapshot: true,
     allOrNothing: true,
-    dropTables: false,
+    dropTables: true,
     safe: true,
     generator: TSMigrationGenerator,
   },

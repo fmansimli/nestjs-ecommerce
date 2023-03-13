@@ -8,10 +8,10 @@ export class CategoryLocale {
   @PrimaryKey()
   id: number;
 
-  @Property({ nullable: false })
+  @Property()
   name: string;
 
-  @Property({ nullable: false })
+  @Property()
   description: string;
 
   @Property({ type: 'timestamp' })
@@ -27,5 +27,5 @@ export class CategoryLocale {
   lang: Language;
 
   @ManyToOne(() => Category)
-  category: Language;
+  category: Category;
 }
