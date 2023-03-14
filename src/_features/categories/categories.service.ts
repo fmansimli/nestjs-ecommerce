@@ -42,12 +42,12 @@ export class CategoriesService {
   }
 
   async update(id: number, attrs: any) {
-    const category = await this.repo.findOne({ id });
+    const category = await this.repo.findOne({ id }, { populate: ['locales'] });
     if (!category) return null;
 
-    const { locales, ...rest } = attrs;
+    //const { locales, ...rest } = attrs;
 
-    this.repo.assign(category, rest);
+    this.repo.assign(category, attrs);
     this.repo.flush();
     return category;
   }
