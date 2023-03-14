@@ -16,5 +16,5 @@ export class QueryCategoryDto {
 
   @IsOptional()
   @IsString()
-  lang: string;
+  lang?: string;
 }

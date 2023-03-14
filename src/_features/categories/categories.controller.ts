@@ -27,7 +27,7 @@ export class CategoriesController {
   }
 
   @Patch(':id')
-  async editCategory(@Param('id') id: number, @Body() body: UpdateCategoryDto) {
+  async editCategory(@Param('id') id: number, @Body() body: any) {
     const category = await this.categoriesService.update(id, body);
     if (!category) {
       throw new NotFoundException('Category Not Found!');
