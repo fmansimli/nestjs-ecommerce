@@ -14,7 +14,7 @@ export class CategoriesService {
   ) {}
 
   async find(query?: QueryCategoryDto) {
-    const { fields, populate, lang="az" } = query || {};
+    const { fields, populate, lang = 'az' } = query || {};
 
     const ctgs = await this.localeRepo.find({ lang: { prefix: lang } });
     return ctgs;
