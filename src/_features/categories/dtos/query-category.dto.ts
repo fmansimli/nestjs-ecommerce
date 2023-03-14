@@ -13,4 +13,8 @@ export class QueryCategoryDto {
   @ArrayMinSize(1)
   @Transform(({ value }) => value.split(','))
   fields: string[];
+
+  @IsOptional()
+  @IsString()
+  lang: string;
 }
