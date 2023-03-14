@@ -4,10 +4,14 @@ import { EntityRepository } from '@mikro-orm/core';
 
 import { QueryCategoryDto, createCategoryDto } from './dtos';
 import { Category } from './entities/category.entity';
+import { CategoryLocale } from './entities/category-locale.entity';
 
 @Injectable()
 export class CategoriesService {
-  constructor(@InjectRepository(Category) private repo: EntityRepository<Category>) {}
+  constructor(
+    @InjectRepository(Category) private readonly repo: EntityRepository<Category>,
+    @InjectRepository(CategoryLocale) private readonly localeRepo: EntityRepository<CategoryLocale>,
+  ) {}
 
   async find(query?: QueryCategoryDto) {
     const { fields, populate } = query || {};
@@ -51,7 +55,6 @@ export class CategoriesService {
     const category = await this.repo.findOne({ id });
     if (!category) return null;
 
-    category.locales.removeAll();
     this.repo.remove(category);
     await this.repo.flush();
     return category;

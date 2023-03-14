@@ -16,7 +16,7 @@ export class CategoriesController {
 
   @Get(':id')
   async getCategoryById(@Query() query: QueryCategoryDto, @Param('id') id: number) {
-    const category = await this.categoriesService.findById(id);
+    const category = await this.categoriesService.findById(id, query);
     if (!category) throw new NotFoundException('Category Not Found');
     return category;
   }

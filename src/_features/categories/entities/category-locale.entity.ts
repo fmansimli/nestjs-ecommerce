@@ -1,4 +1,4 @@
-import { Property, PrimaryKey, Entity, ManyToOne } from '@mikro-orm/core';
+import { Property, PrimaryKey, Entity, ManyToOne, Cascade } from '@mikro-orm/core';
 
 import { Language } from 'src/_features/languages/entities/language.entity';
 import { Category } from './category.entity';
@@ -26,6 +26,6 @@ export class CategoryLocale {
   @ManyToOne(() => Language)
   lang: Language;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, { cascade: [Cascade.REMOVE] })
   category: Category;
 }
