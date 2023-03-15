@@ -1,4 +1,5 @@
 import { Entity, Property, PrimaryKey, OneToOne } from '@mikro-orm/core';
+
 import { Address } from '../../addresses/entities/address.entity';
 
 @Entity({ tableName: 'suppliers' })
@@ -24,6 +25,6 @@ export class Supplier {
   @Property({ type: 'timestamp', nullable: true })
   deletedAt?: Date = null;
 
-  @OneToOne(() => Address, { orphanRemoval: true })
+  @OneToOne(() => Address, { mappedBy: 'supplier', orphanRemoval: true })
   address: Address;
 }

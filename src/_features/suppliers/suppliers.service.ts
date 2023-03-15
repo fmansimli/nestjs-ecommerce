@@ -10,7 +10,6 @@ export class SuppliersService {
   constructor(@InjectRepository(Supplier) private readonly repo: EntityRepository<Supplier>) {}
 
   async create(attrs: CreateSupplierDto) {
-    
     const supplier = this.repo.create(attrs);
     await this.repo.persistAndFlush(supplier);
     return supplier;
