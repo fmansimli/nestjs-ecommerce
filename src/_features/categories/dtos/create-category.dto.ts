@@ -1,11 +1,13 @@
 import { IsString, MinLength, MaxLength, ValidateNested, IsNumber } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class createCategoryDto {
   @ValidateNested({ each: true })
+  @Type(() => LocaleDto)
   locales: LocaleDto[];
 }
 
-class LocaleDto {
+export class LocaleDto {
   @IsString()
   @MinLength(5)
   @MaxLength(50)
