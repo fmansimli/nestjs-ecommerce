@@ -16,14 +16,14 @@ export class Supplier {
   phone: string;
 
   @Property({ type: 'timestamp' })
-  createdAt: Date = new Date();
+  createdAt?: Date = new Date();
 
   @Property({ type: 'timestamp', onUpdate: () => new Date() })
-  updatedAt: Date = new Date();
+  updatedAt?: Date = new Date();
 
-  @Property({ type: 'timestamp' })
-  deletedAt: Date = null;
+  @Property({ type: 'timestamp', nullable: true })
+  deletedAt?: Date = null;
 
-  @OneToOne(() => Address, { owner: true })
+  @OneToOne(() => Address, { orphanRemoval: true })
   address: Address;
 }

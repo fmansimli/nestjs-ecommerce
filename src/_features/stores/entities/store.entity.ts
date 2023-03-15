@@ -23,6 +23,6 @@ export class Store {
   @OneToMany(() => Product, (product) => product.store)
   prodcuts = new Collection<Product>(this);
 
-  @OneToOne(() => Address, { owner: true })
+  @OneToOne(() => Address, { orphanRemoval: true })
   address: Address;
 }

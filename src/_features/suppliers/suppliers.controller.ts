@@ -1,7 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common/exceptions';
+
 import { SuppliersService } from './suppliers.service';
-import { CreateSupplierDto } from './dto/create-supplier.dto';
-import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { CreateSupplierDto,UpdateSupplierDto } from './dto';
 
 @Controller('suppliers')
 export class SuppliersController {
@@ -18,17 +19,29 @@ export class SuppliersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.suppliersService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const supplier = await this.suppliersService.findOne(+id);
+    if (!supplier) {
+      throw new NotFoundException('supplier not found!');
+    }
+    return supplier;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSupplierDto: UpdateSupplierDto) {
-    return this.suppliersService.update(+id, updateSupplierDto);
+  async update(@Param('id') id: string, @Body() updateSupplierDto: UpdateSupplierDto) {
+    const supplier = await this.suppliersService.update(+id, updateSupplierDto);
+    if (!supplier) {
+      throw new NotFoundException('supplier not found!');
+    }
+    return supplier;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.suppliersService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const supplier = await this.suppliersService.remove(+id);
+    if (!supplier) {
+      throw new NotFoundException('supplier not found!');
+    }
+    return supplier;
   }
 }

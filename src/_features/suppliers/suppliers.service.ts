@@ -1,26 +1,48 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSupplierDto } from './dto/create-supplier.dto';
-import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { EntityRepository } from '@mikro-orm/postgresql';
+
+import { CreateSupplierDto, QuerySupplierDto, UpdateSupplierDto } from './dto';
+import { Supplier } from './entities/supplier.entity';
 
 @Injectable()
 export class SuppliersService {
-  create(createSupplierDto: CreateSupplierDto) {
-    return 'This action adds a new supplier';
+  constructor(@InjectRepository(Supplier) private readonly repo: EntityRepository<Supplier>) {}
+
+  async create(attrs: CreateSupplierDto) {
+    
+    const supplier = this.repo.create(attrs);
+    await this.repo.persistAndFlush(supplier);
+    return supplier;
   }
 
-  findAll() {
-    return `This action returns all suppliers`;
+  async findAll(_query?: QuerySupplierDto) {
+    const [data, number] = await this.repo.findAndCount({}, { orderBy: { id: 'DESC' } });
+    return { data, number };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} supplier`;
+  async findOne(id: number) {
+    const supplier = await this.repo.findOne({ id });
+    if (!supplier) return null;
+
+    return supplier;
   }
 
-  update(id: number, updateSupplierDto: UpdateSupplierDto) {
-    return `This action updates a #${id} supplier`;
+  async update(id: number, _attrs: UpdateSupplierDto) {
+    const supplier = await this.repo.findOne({ id });
+    if (!supplier) return null;
+
+    this.repo.assign(supplier, _attrs);
+    await this.repo.flush();
+
+    return supplier;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} supplier`;
+  async remove(id: number) {
+    const supplier = await this.repo.findOne({ id });
+    if (!supplier) return null;
+
+    await this.repo.removeAndFlush(supplier);
+    return supplier;
   }
 }

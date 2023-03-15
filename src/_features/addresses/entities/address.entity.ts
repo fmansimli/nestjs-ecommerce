@@ -26,12 +26,12 @@ export class Address {
   @Property({ type: 'timestamp', onUpdate: () => new Date() })
   updatedAt: Date = new Date();
 
-  @Property({ type: 'timestamp' })
+  @Property({ type: 'timestamp', nullable: true })
   deletedAt: Date = null;
 
-  @OneToOne(() => Address, { orphanRemoval: true })
+  @OneToOne(() => Supplier, { owner: true })
   supplier: Supplier;
 
-  @OneToOne(() => Address, { orphanRemoval: true })
+  @OneToOne(() => Store, { owner: true })
   store: Store;
 }
