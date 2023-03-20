@@ -8,6 +8,6 @@ import { Customer } from './entities/customer.entity';
 @Module({
   controllers: [CustomersController],
   providers: [CustomersService],
-  imports: [MikroOrmModule.forFeature([Customer])],
+  imports: [MikroOrmModule.forFeature({ entities: [Customer] })],
 })
 export class CustomersModule {}

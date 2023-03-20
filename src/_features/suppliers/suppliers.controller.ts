@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { NotFoundException } from '@nestjs/common/exceptions';
 
 import { SuppliersService } from './suppliers.service';
-import { CreateSupplierDto,UpdateSupplierDto } from './dto';
+import { CreateSupplierDto, QuerySupplierDto, UpdateSupplierDto } from './dto';
 
 @Controller('suppliers')
 export class SuppliersController {
@@ -14,13 +14,13 @@ export class SuppliersController {
   }
 
   @Get()
-  findAll() {
-    return this.suppliersService.findAll();
+  findAll(@Query() query: QuerySupplierDto) {
+    return this.suppliersService.findAll(query);
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const supplier = await this.suppliersService.findOne(+id);
+  async findOne(@Param('id') id: string, @Query() query: QuerySupplierDto) {
+    const supplier = await this.suppliersService.findOne(+id, query);
     if (!supplier) {
       throw new NotFoundException('supplier not found!');
     }

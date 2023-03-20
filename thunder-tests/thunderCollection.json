@@ -1,0 +1,36 @@
+[
+  {
+    "_id": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "colName": "nestjs-ecommerce",
+    "created": "2023-03-20T08:27:46.030Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "50982464-7a1d-4727-a29a-0e0892cb67fd",
+        "name": "categories",
+        "containerId": "",
+        "created": "2023-03-20T08:27:54.646Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "fde814ab-068f-4c29-b4be-6d5a53974feb",
+        "name": "languages",
+        "containerId": "",
+        "created": "2023-03-20T08:38:06.293Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "de33d6cd-bdc7-4a3b-b94f-df7b28fea473",
+        "name": "suppliers",
+        "containerId": "",
+        "created": "2023-03-20T09:39:50.162Z",
+        "sortNum": 15000
+      }
+    ],
+    "settings": {
+      "headers": [],
+      "tests": [],
+      "envId": "7d8b72fb-4c98-43c3-a927-3b2b09313c5f"
+    }
+  }
+]

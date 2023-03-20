@@ -8,6 +8,6 @@ import { PaymentMethod } from './entities/payment-method.entity';
 @Module({
   controllers: [PaymentMethodsController],
   providers: [PaymentMethodsService],
-  imports: [MikroOrmModule.forFeature([PaymentMethod])],
+  imports: [MikroOrmModule.forFeature({ entities: [PaymentMethod] })],
 })
 export class PaymentMethodsModule {}

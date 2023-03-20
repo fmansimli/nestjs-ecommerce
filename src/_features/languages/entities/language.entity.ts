@@ -1,6 +1,4 @@
-import { Entity, PrimaryKey, Property, OneToMany, Collection } from '@mikro-orm/core';
-
-import { CategoryLocale } from 'src/_features/categories/entities/category-locale.entity';
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity({ tableName: 'languages' })
 export class Language {
@@ -21,7 +19,4 @@ export class Language {
 
   @Property({ type: 'timestamp', nullable: true })
   deletedAt: Date = null;
-
-  @OneToMany(() => CategoryLocale, (locale) => locale.lang)
-  categories = new Collection<CategoryLocale>(this);
 }

@@ -9,9 +9,9 @@ import { CreateLanguageDto, QueryLangDto, UpdateLanguageDto } from './dto';
 export class LanguagesService {
   constructor(@InjectRepository(Language) private readonly repo: EntityRepository<Language>) {}
 
-  create(lang: CreateLanguageDto) {
+  async create(lang: CreateLanguageDto) {
     const language = this.repo.create(lang);
-    this.repo.persistAndFlush(language);
+    await this.repo.persistAndFlush(language);
     return language;
   }
 

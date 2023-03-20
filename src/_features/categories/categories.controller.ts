@@ -3,7 +3,7 @@ import {} from '@nestjs/common';
 import { NotFoundException } from '@nestjs/common/exceptions';
 
 import { CategoriesService } from './categories.service';
-import { createCategoryDto, UpdateCategoryDto, QueryCategoryDto } from './dtos';
+import { CreateCategoryDto, UpdateCategoryDto, QueryCategoryDto } from './dtos';
 
 @Controller('categories')
 export class CategoriesController {
@@ -15,19 +15,19 @@ export class CategoriesController {
   }
 
   @Get(':id')
-  async getCategoryById(@Query() query: QueryCategoryDto, @Param('id') id: number) {
+  async getById(@Query() query: QueryCategoryDto, @Param('id') id: number) {
     const category = await this.categoriesService.findById(id, query);
     if (!category) throw new NotFoundException('Category Not Found');
     return category;
   }
 
   @Post()
-  async createCategory(@Body() body: createCategoryDto) {
+  async create(@Body() body: CreateCategoryDto) {
     return this.categoriesService.create(body);
   }
 
   @Patch(':id')
-  async editCategory(@Param('id') id: number, @Body() body: UpdateCategoryDto) {
+  async editById(@Param('id') id: number, @Body() body: UpdateCategoryDto) {
     const category = await this.categoriesService.update(id, body);
     if (!category) {
       throw new NotFoundException('Category Not Found!');

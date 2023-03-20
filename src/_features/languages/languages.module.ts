@@ -6,7 +6,7 @@ import { LanguagesController } from './languages.controller';
 import { Language } from './entities/language.entity';
 
 @Module({
-  imports: [MikroOrmModule.forFeature([Language])],
+  imports: [MikroOrmModule.forFeature({ entities: [Language] })],
   controllers: [LanguagesController],
   providers: [LanguagesService],
 })

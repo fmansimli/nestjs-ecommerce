@@ -1,0 +1,250 @@
+[
+  {
+    "_id": "a74666fa-8647-4188-be71-9dbf6ac5a887",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "50982464-7a1d-4727-a29a-0e0892cb67fd",
+    "name": "get all",
+    "url": "http://{{baseURL}}/api/v1/categories",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-03-20T08:28:16.518Z",
+    "modified": "2023-03-20T08:32:30.765Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "940f51de-589c-4f73-8efe-ab941ec302f8",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "50982464-7a1d-4727-a29a-0e0892cb67fd",
+    "name": "get by id",
+    "url": "http://{{baseURL}}/api/v1/categories/1",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-20T08:28:38.201Z",
+    "modified": "2023-03-20T08:32:34.812Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "492d50d9-edd8-48d4-8065-6f39a0d6b8d2",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "50982464-7a1d-4727-a29a-0e0892cb67fd",
+    "name": "update by id",
+    "url": "http://{{baseURL}}/api/v1/categories/1",
+    "method": "PATCH",
+    "sortNum": 30000,
+    "created": "2023-03-20T08:28:49.459Z",
+    "modified": "2023-03-20T08:31:51.632Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "8f213c99-3eb8-451b-aa5f-f9342df1b5b8",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "50982464-7a1d-4727-a29a-0e0892cb67fd",
+    "name": "delete by id",
+    "url": "http://{{baseURL}}/api/v1/categories/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-20T08:29:11.721Z",
+    "modified": "2023-03-20T08:32:20.751Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "ea2e5a14-6c7f-4d09-bde5-7a9f541de1d5",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "50982464-7a1d-4727-a29a-0e0892cb67fd",
+    "name": "create",
+    "url": "http://{{baseURL}}/api/v1/categories",
+    "method": "POST",
+    "sortNum": 5000,
+    "created": "2023-03-20T08:29:38.177Z",
+    "modified": "2023-03-20T11:46:33.919Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"locales\": [\n    {\n      \"name\": \"category 1 in az\",\n      \"description\": \"category desc 1 in az\",\n      \"lang\": 1\n    },\n    {\n      \"name\": \"category 1 in en\",\n      \"description\": \"category desc 1 in en\",\n      \"lang\": 2\n    },\n    {\n      \"name\": \"category 1 in ru\",\n      \"description\": \"category desc 1 in ru\",\n      \"lang\": 3\n    }\n  ]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "e5ff1370-4522-45ba-8674-fc4b7321e1c8",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "fde814ab-068f-4c29-b4be-6d5a53974feb",
+    "name": "create",
+    "url": "http://{{baseURL}}/api/v1/languages",
+    "method": "POST",
+    "sortNum": 5000,
+    "created": "2023-03-20T08:38:06.293Z",
+    "modified": "2023-03-20T12:02:36.876Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Russian\",\n  \"prefix\": \"ru\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "79dd7b68-31c8-476e-827f-bf286e035c63",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "fde814ab-068f-4c29-b4be-6d5a53974feb",
+    "name": "get all",
+    "url": "http://{{baseURL}}/api/v1/languages",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-03-20T08:38:06.294Z",
+    "modified": "2023-03-20T08:38:31.206Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "a60cd37d-1399-4795-be62-835e3d495522",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "fde814ab-068f-4c29-b4be-6d5a53974feb",
+    "name": "get by id",
+    "url": "http://{{baseURL}}/api/v1/languages/1",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-20T08:38:06.295Z",
+    "modified": "2023-03-20T08:38:42.826Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "cf31b726-f1ee-48ab-9d8a-21ebc46b4be9",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "fde814ab-068f-4c29-b4be-6d5a53974feb",
+    "name": "update by id",
+    "url": "http://{{baseURL}}/api/v1/languages/1",
+    "method": "PATCH",
+    "sortNum": 30000,
+    "created": "2023-03-20T08:38:06.296Z",
+    "modified": "2023-03-20T08:38:46.514Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c4192013-e170-4c8e-8d21-4c886ed47ffc",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "fde814ab-068f-4c29-b4be-6d5a53974feb",
+    "name": "delete by id",
+    "url": "http://{{baseURL}}/api/v1/languages/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-20T08:38:06.297Z",
+    "modified": "2023-03-20T08:38:49.691Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "114d9e71-01cd-418a-aa38-6b9d1e1f5040",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "de33d6cd-bdc7-4a3b-b94f-df7b28fea473",
+    "name": "create",
+    "url": "http://{{baseURL}}/api/v1/suppliers",
+    "method": "POST",
+    "sortNum": 5000,
+    "created": "2023-03-20T09:39:50.163Z",
+    "modified": "2023-03-20T16:23:40.772Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"supplier 2\",\n  \"email\": \"supplier2@test.com\",\n  \"phone\": \"+994503899971\",\n  \"address\": {\n    \"country\": \"Azerbaijan\",\n    \"state\": \"Azerbaijan\",\n    \"city\": \"Bakuuu\",\n    \"street\": \"test streetn 2\"\n  }\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5a8b2666-348b-4e6a-a950-d2750ae9cdba",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "de33d6cd-bdc7-4a3b-b94f-df7b28fea473",
+    "name": "get all",
+    "url": "http://{{baseURL}}/api/v1/suppliers?populate=address",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-03-20T09:39:50.164Z",
+    "modified": "2023-03-20T16:24:02.484Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "populate",
+        "value": "address",
+        "isPath": false
+      },
+      {
+        "name": "fields",
+        "value": "name",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "8bac4abd-ae30-432a-9991-da6d980d866a",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "de33d6cd-bdc7-4a3b-b94f-df7b28fea473",
+    "name": "get by id",
+    "url": "http://{{baseURL}}/api/v1/suppliers/2?populate=address",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-03-20T09:39:50.165Z",
+    "modified": "2023-03-20T16:24:26.135Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "populate",
+        "value": "address",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "80cb02b8-91cd-4e31-af00-35815d3a0a7d",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "de33d6cd-bdc7-4a3b-b94f-df7b28fea473",
+    "name": "update by id",
+    "url": "http://{{baseURL}}/api/v1/suppliers/2",
+    "method": "PATCH",
+    "sortNum": 30000,
+    "created": "2023-03-20T09:39:50.166Z",
+    "modified": "2023-03-20T16:24:39.021Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"supplier 22\",\n  \"email\": \"supplier2@test.com\",\n  \"phone\": \"+994773899971\",\n  \"address\": {\n    \"country\": \"Azerbaijan\",\n    \"state\": \"Azerbaijan\",\n    \"city\": \"Bakuuu\",\n    \"street\": \"test streetn 22\"\n  }\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f9e6df7d-4ab7-43b5-9e82-ae8a1b83a04b",
+    "colId": "708be5f4-da0c-4a2b-9aea-70770f12777e",
+    "containerId": "de33d6cd-bdc7-4a3b-b94f-df7b28fea473",
+    "name": "delete by id",
+    "url": "http://{{baseURL}}/api/v1/suppliers/1",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-03-20T09:39:50.167Z",
+    "modified": "2023-03-20T09:40:45.943Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]

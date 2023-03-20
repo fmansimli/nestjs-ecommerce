@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "7d8b72fb-4c98-43c3-a927-3b2b09313c5f",
+    "name": "nest-ecommerce",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2023-03-20T08:31:12.482Z",
+    "modified": "2023-03-20T08:31:12.482Z",
+    "data": [
+      {
+        "name": "baseURL",
+        "value": "localhost:3000"
+      }
+    ]
+  }
+]

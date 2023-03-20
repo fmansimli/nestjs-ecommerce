@@ -25,6 +25,6 @@ export class Supplier {
   @Property({ type: 'timestamp', nullable: true })
   deletedAt?: Date = null;
 
-  @OneToOne(() => Address, { mappedBy: 'supplier', orphanRemoval: true })
+  @OneToOne(() => Address, { nullable: true })
   address: Address;
 }

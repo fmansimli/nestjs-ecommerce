@@ -7,7 +7,7 @@ import { AddressesController } from './addresses.controller';
 import { Address } from './entities/address.entity';
 
 @Module({
-  imports: [MikroOrmModule.forFeature([Address])],
+  imports: [MikroOrmModule.forFeature({ entities: [Address] })],
   controllers: [AddressesController],
   providers: [AddressesService],
 })

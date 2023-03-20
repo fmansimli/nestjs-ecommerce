@@ -8,6 +8,6 @@ import { Coupon } from './entities/coupon.entity';
 @Module({
   controllers: [CouponsController],
   providers: [CouponsService],
-  imports: [MikroOrmModule.forFeature([Coupon])],
+  imports: [MikroOrmModule.forFeature({ entities: [Coupon] })],
 })
 export class CouponsModule {}

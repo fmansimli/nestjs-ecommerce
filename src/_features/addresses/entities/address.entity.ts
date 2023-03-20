@@ -1,10 +1,11 @@
-import { Property, Entity, PrimaryKey, OneToOne } from '@mikro-orm/core';
-
-import { Supplier } from 'src/_features/suppliers/entities/supplier.entity';
-import { Store } from 'src/_features/stores/entities/store.entity';
+import { Property, Entity, PrimaryKey } from '@mikro-orm/core';
 
 @Entity({ tableName: 'addresses' })
 export class Address {
+  constructor(address: Partial<Address>) {
+    Object.assign(this, address);
+  }
+
   @PrimaryKey()
   id: number;
 
@@ -28,10 +29,4 @@ export class Address {
 
   @Property({ type: 'timestamp', nullable: true })
   deletedAt?: Date = null;
-
-  @OneToOne(() => Supplier)
-  supplier!: Supplier;
-
-  @OneToOne(() => Store)
-  store!: Store;
 }

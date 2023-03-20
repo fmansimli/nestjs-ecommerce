@@ -15,6 +15,100 @@
           "nullable": false,
           "mappedType": "integer"
         },
+        "country": {
+          "name": "country",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "state": {
+          "name": "state",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "city": {
+          "name": "city",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "street": {
+          "name": "street",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 6,
+          "mappedType": "datetime"
+        }
+      },
+      "name": "addresses",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "addresses_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamptz(0)",
@@ -858,11 +952,29 @@
           "nullable": true,
           "length": 6,
           "mappedType": "datetime"
+        },
+        "address_id": {
+          "name": "address_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "integer"
         }
       },
       "name": "stores",
       "schema": "public",
       "indexes": [
+        {
+          "columnNames": [
+            "address_id"
+          ],
+          "composite": false,
+          "keyName": "stores_address_id_unique",
+          "primary": false,
+          "unique": true
+        },
         {
           "keyName": "stores_pkey",
           "columnNames": [
@@ -874,7 +986,21 @@
         }
       ],
       "checks": [],
-      "foreignKeys": {}
+      "foreignKeys": {
+        "stores_address_id_foreign": {
+          "constraintName": "stores_address_id_foreign",
+          "columnNames": [
+            "address_id"
+          ],
+          "localTableName": "public.stores",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.addresses",
+          "deleteRule": "set null",
+          "updateRule": "cascade"
+        }
+      }
     },
     {
       "columns": {
@@ -1474,11 +1600,29 @@
           "nullable": true,
           "length": 6,
           "mappedType": "datetime"
+        },
+        "address_id": {
+          "name": "address_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "integer"
         }
       },
       "name": "suppliers",
       "schema": "public",
       "indexes": [
+        {
+          "columnNames": [
+            "address_id"
+          ],
+          "composite": false,
+          "keyName": "suppliers_address_id_unique",
+          "primary": false,
+          "unique": true
+        },
         {
           "keyName": "suppliers_pkey",
           "columnNames": [
@@ -1490,159 +1634,18 @@
         }
       ],
       "checks": [],
-      "foreignKeys": {}
-    },
-    {
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "unsigned": true,
-          "autoincrement": true,
-          "primary": true,
-          "nullable": false,
-          "mappedType": "integer"
-        },
-        "country": {
-          "name": "country",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "string"
-        },
-        "state": {
-          "name": "state",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "string"
-        },
-        "city": {
-          "name": "city",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "string"
-        },
-        "street": {
-          "name": "street",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "string"
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "supplier_id": {
-          "name": "supplier_id",
-          "type": "int",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "integer"
-        },
-        "store_id": {
-          "name": "store_id",
-          "type": "int",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "integer"
-        }
-      },
-      "name": "addresses",
-      "schema": "public",
-      "indexes": [
-        {
-          "columnNames": [
-            "supplier_id"
-          ],
-          "composite": false,
-          "keyName": "addresses_supplier_id_unique",
-          "primary": false,
-          "unique": true
-        },
-        {
-          "columnNames": [
-            "store_id"
-          ],
-          "composite": false,
-          "keyName": "addresses_store_id_unique",
-          "primary": false,
-          "unique": true
-        },
-        {
-          "keyName": "addresses_pkey",
-          "columnNames": [
-            "id"
-          ],
-          "composite": false,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
       "foreignKeys": {
-        "addresses_supplier_id_foreign": {
-          "constraintName": "addresses_supplier_id_foreign",
+        "suppliers_address_id_foreign": {
+          "constraintName": "suppliers_address_id_foreign",
           "columnNames": [
-            "supplier_id"
+            "address_id"
           ],
-          "localTableName": "public.addresses",
+          "localTableName": "public.suppliers",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.suppliers",
-          "updateRule": "cascade"
-        },
-        "addresses_store_id_foreign": {
-          "constraintName": "addresses_store_id_foreign",
-          "columnNames": [
-            "store_id"
-          ],
-          "localTableName": "public.addresses",
-          "referencedColumnNames": [
-            "id"
-          ],
-          "referencedTableName": "public.stores",
+          "referencedTableName": "public.addresses",
+          "deleteRule": "set null",
           "updateRule": "cascade"
         }
       }

@@ -9,6 +9,6 @@ import { CategoryLocale } from './entities/category-locale.entity';
 @Module({
   controllers: [CategoriesController],
   providers: [CategoriesService],
-  imports: [MikroOrmModule.forFeature([Category, CategoryLocale])],
+  imports: [MikroOrmModule.forFeature({ entities: [Category, CategoryLocale] })],
 })
 export class CategoriesModule {}

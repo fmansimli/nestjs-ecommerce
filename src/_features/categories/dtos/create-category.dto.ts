@@ -1,7 +1,7 @@
 import { IsString, MinLength, MaxLength, ValidateNested, IsNumber, ArrayMinSize } from 'class-validator';
 import { Type } from 'class-transformer';
 
-export class createCategoryDto {
+export class CreateCategoryDto {
   @ValidateNested({ each: true })
   @Type(() => LocaleDto)
   @ArrayMinSize(2)

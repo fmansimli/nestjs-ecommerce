@@ -5,6 +5,10 @@ import { Category } from './category.entity';
 
 @Entity({ tableName: 'category_locales' })
 export class CategoryLocale {
+  constructor(locale: Partial<CategoryLocale>) {
+    Object.assign(this, locale);
+  }
+
   @PrimaryKey()
   id: number;
 
