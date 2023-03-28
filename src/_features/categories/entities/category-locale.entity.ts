@@ -28,7 +28,7 @@ export class CategoryLocale {
   deletedAt = null;
 
   @ManyToOne(() => Language)
-  lang: Language;
+  lang?: Language;
 
   @ManyToOne(() => Category, { cascade: [Cascade.REMOVE] })
   category: Category;
