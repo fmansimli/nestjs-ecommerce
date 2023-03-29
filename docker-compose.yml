@@ -1,19 +1,19 @@
 version: '3.4'
 
 services:
-  nestjs-app:
-    build: .
-    container_name: nestjs-app
-    restart: always
-    ports:
-      - "3000:3030"
-    depends_on:
-      - appdb
-      - pgadmin
-    environment:
-      - NODE_ENV=production
-    networks:
-      - app-network
+  # nestjs-app:
+  #   build: .
+  #   container_name: nestjs-app
+  #   restart: always
+  #   ports:
+  #     - "3000:3030"
+  #   depends_on:
+  #     - appdb
+  #     - pgadmin
+  #   environment:
+  #     - NODE_ENV=production
+  #   networks:
+  #     - app-network
 
   appdb:
     image: postgres
