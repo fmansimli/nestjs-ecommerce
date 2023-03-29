@@ -22,8 +22,9 @@
     "mig": "npx mikro-orm migration:create",
     "mig:up": "npx mikro-orm migration:up",
     "build-image": "rm -rf dist && npm run build",
-    "docker:rebuild": "docker compose down && docker compose -p $npm_package_name up -d --force-recreate --build",
-    "docker:build": "docker compose down && docker compose --project-name $npm_package_name up -d --build"
+    "docker:build": "docker compose down && docker compose -p $npm_package_name up -d --force-recreate --build",
+    "docker:restart": "docker compose down && docker compose --project-name $npm_package_name up -d --build",
+    "docker:recreate": "docker compose down --rmi all && docker compose --project-name $npm_package_name up -d --build"
   },
   "dependencies": {
     "@mikro-orm/core": "^5.6.13",
