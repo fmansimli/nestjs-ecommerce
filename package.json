@@ -1,7 +1,7 @@
 {
-  "name": "e-commerce",
+  "name": "nestjs-mikroorm",
   "version": "0.0.1",
-  "description": "",
+  "description": "nestjs application by using @mikro-orm",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
