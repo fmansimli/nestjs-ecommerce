@@ -3,12 +3,16 @@ import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 
 import { CreateSupplierDto, QuerySupplierDto, UpdateSupplierDto } from './dto';
+
 import { Supplier } from './entities/supplier.entity';
 import { Address } from '../addresses/entities/address.entity';
 
 @Injectable()
 export class SuppliersService {
-  constructor(@InjectRepository(Supplier) private readonly repo: EntityRepository<Supplier>) {}
+  constructor(
+    @InjectRepository(Supplier) private readonly repo: EntityRepository<Supplier>,
+    @InjectRepository(Address) private readonly addresRepo: EntityRepository<Address>,
+  ) {}
 
   async create(body: CreateSupplierDto) {
     const { address, ...rest } = body;
@@ -46,15 +50,20 @@ export class SuppliersService {
     return supplier;
   }
 
-  async update(id: number, _attrs: UpdateSupplierDto) {
+  async update(id: number, body: UpdateSupplierDto) {
+    const { address, ...attrs } = body;
+    console.log(address);
+
     const supplier = await this.repo.findOne({ id }, { populate: ['address'] });
     if (!supplier) return null;
 
-    this.repo.assign(supplier, _attrs);
+    this.repo.assign(supplier, attrs);
+
+    this.addresRepo.upsert(new Address(address));
 
     await this.repo.flush();
 
-    return supplier;
+    return { ...supplier, address };
   }
 
   async remove(id: number) {
