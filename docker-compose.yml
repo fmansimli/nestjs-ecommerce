@@ -1,19 +1,34 @@
 version: '3.4'
 
 services:
-  db:
+  nestjs-app:
+    build: .
+    container_name: nestjs-app
+    restart: always
+    ports:
+      - "3000:3030"
+    depends_on:
+      - appdb
+      - pgadmin
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+
+  appdb:
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: pgadmin
       POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: nestdb
       POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     networks:
-      - pg-net
+      - app-network
 
   pgadmin:
     image: dpage/pgadmin4
@@ -26,14 +41,14 @@ services:
     ports:
       - '8080:80'
     depends_on:
-      - db
+      - appdb
     networks:
-      - pg-net
+      - app-network
 
 volumes:
   db-data:
   pgadmin-data:
 
 networks:
-  pg-net:
+  app-network:
     driver: bridge
