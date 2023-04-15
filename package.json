@@ -1,14 +1,11 @@
 {
-  "name": "e-commerce",
+  "name": "nestjs-mikroorm",
   "version": "0.0.1",
-  "description": "",
+  "description": "nestjs application by using @mikro-orm",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "git": "git add . && git commit -m \"$npm_package_name ($npm_package_version) ## $(date) ## \" && git push origin master",
-    "mig": "npx mikro-orm migration:create",
-    "mig:up": "npx mikro-orm migration:up",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -20,7 +17,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "git": "git add . && git commit -m \"$npm_package_name ($npm_package_version) ## $(date) ## \" && git push origin master",
+    "mig": "npx mikro-orm migration:create",
+    "mig:up": "npx mikro-orm migration:up",
+    "build-image": "rm -rf dist && npm run build",
+    "docker:build": "docker compose down && docker compose -p $npm_package_name up -d --force-recreate --build",
+    "docker:restart": "docker compose down && docker compose --project-name $npm_package_name up -d --build",
+    "docker:recreate": "docker compose down --rmi all && docker compose --project-name $npm_package_name up -d --build"
   },
   "dependencies": {
     "@mikro-orm/core": "^5.6.13",
@@ -32,6 +36,7 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^6.2.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "reflect-metadata": "^0.1.13",

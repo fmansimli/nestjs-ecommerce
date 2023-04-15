@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 
-import { QueryCategoryDto, CreateCategoryDto } from './dtos';
+import { QueryCategoryDto, CreateCategoryDto, UpdateCategoryDto } from './dtos';
+
 import { Category } from './entities/category.entity';
 import { CategoryLocale } from './entities/category-locale.entity';
 
@@ -37,19 +38,35 @@ export class CategoriesService {
   }
 
   async create(body: CreateCategoryDto) {
-    // const { locales, ...rest } = body;
-    const category = this.repo.create(body);
-    await this.repo.persistAndFlush(category);
-    return category;
+    const { locales, ...category } = body;
+
+    const _category = this.repo.create(category);
+
+    for (const locale of locales) {
+      const _locale = this.localeRepo.create(locale);
+      _locale.category = _category;
+    }
+    await this.repo.persistAndFlush(_category);
+    return _category;
   }
 
-  async update(id: number, attrs: any) {
-    const category = await this.repo.findOne({ id }, { populate: ['locales'] });
-    if (!category) return null;
+  async update(id: number, body: UpdateCategoryDto) {
+    const { locales, ...category } = body;
 
-    this.repo.assign(category, attrs);
+    const _category = await this.repo.findOne({ id }, { populate: ['locales'] });
+    if (!_category) return null;
+
+    this.repo.assign(_category, category);
+
+    for (const locale of _category.locales) {
+      this.localeRepo.assign(
+        locale,
+        locales.find((l) => l.id === locale.id),
+      );
+    }
+
     this.repo.flush();
-    return category;
+    return _category;
   }
 
   async deleteById(id: number) {
