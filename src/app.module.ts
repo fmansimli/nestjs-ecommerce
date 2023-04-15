@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { ConfigModule } from '@nestjs/config';
+import { MikroORM } from '@mikro-orm/core';
+
+import mikOrmConfig from '../mikro-orm.config';
 
 import { CategoriesModule } from './_features/categories/categories.module';
 import { ProductsModule } from './_features/products/products.module';
@@ -37,4 +40,12 @@ import { LanguagesModule } from './_features/languages/languages.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  async onModuleInit() {
+    const orm = await MikroORM.init(mikOrmConfig);
+
+    const migrator = orm.getMigrator();
+    await migrator.up();
+    await orm.close(true);
+  }
+}
