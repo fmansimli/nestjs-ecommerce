@@ -1,19 +1,49 @@
 version: '3.4'
 
 services:
-  db:
+  # frontend:
+  #   build: ./frontend-react/
+  #   container_name: frontend-cont
+  #   restart: always
+  #   ports:
+  #     - '8082:3000'
+  #   depends_on:
+  #     - backend
+  #   environment:
+  #     - NODE_ENV=production
+  #   networks:
+  #     my-network:
+  #       ipv4_address: 172.16.238.10
+
+  # backend:
+  #   build: ./backend-nest/
+  #   container_name: backend-cont
+  #   restart: always
+  #   ports:
+  #     - '3001:3000'
+  #   depends_on:
+  #     - database
+  #   environment:
+  #     - TEST_VARIABLE=variable-name
+  #   networks:
+  #     my-network:
+  #       ipv4_address: 172.16.238.11
+
+  database:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: pgadmin
+      POSTGRES_USER: pguser
       POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: mydb
       POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     networks:
-      - pg-net
+      my-network:
+        ipv4_address: 172.16.238.12
 
   pgadmin:
     image: dpage/pgadmin4
@@ -24,16 +54,20 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     ports:
-      - '8080:80'
+      - '8081:80'
     depends_on:
-      - db
+      - database
     networks:
-      - pg-net
+      - my-network
 
 volumes:
   db-data:
   pgadmin-data:
 
 networks:
-  pg-net:
+  my-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
