@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { ConfigModule } from '@nestjs/config';
 import { MikroORM } from '@mikro-orm/core';
 
 import mikOrmConfig from '../mikro-orm.config';
+
+import { LoggerMiddleware } from './middlewares/logger.middleware';
 
 import { CategoriesModule } from './_features/categories/categories.module';
 import { ProductsModule } from './_features/products/products.module';
@@ -40,7 +42,19 @@ import { LanguagesModule } from './_features/languages/languages.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .exclude(
+        { path: 'auth', method: RequestMethod.ALL },
+        { path: 'users', method: RequestMethod.ALL },
+        { path: 'account', method: RequestMethod.ALL },
+        'admin/(.*)',
+      )
+      .forRoutes('*');
+  }
+
   async onModuleInit() {
     const orm = await MikroORM.init(mikOrmConfig);
 
