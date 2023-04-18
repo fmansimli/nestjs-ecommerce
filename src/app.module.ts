@@ -3,8 +3,6 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { ConfigModule } from '@nestjs/config';
 import { MikroORM } from '@mikro-orm/core';
 
-import mikOrmConfig from '../mikro-orm.config';
-
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 
 import { CategoriesModule } from './_features/categories/categories.module';
@@ -56,7 +54,7 @@ export class AppModule implements NestModule {
   }
 
   async onModuleInit() {
-    const orm = await MikroORM.init(mikOrmConfig);
+    const orm = await MikroORM.init();
 
     const migrator = orm.getMigrator();
     await migrator.up();
