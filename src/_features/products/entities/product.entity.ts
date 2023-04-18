@@ -1,9 +1,17 @@
-import { Entity, PrimaryKey, Property, ManyToMany, Collection, OneToMany, ManyToOne } from '@mikro-orm/core';
+import {
+  Entity,
+  PrimaryKey,
+  Property,
+  ManyToMany,
+  Collection,
+  OneToMany,
+  ManyToOne,
+} from '@mikro-orm/core';
 
 import { Category } from '../../categories/entities/category.entity';
 import { ProductVariation } from './product-variation.entity';
-import { Review } from 'src/_features/reviews/entities/review.entity';
-import { Store } from 'src/_features/stores/entities/store.entity';
+import { Review } from '../../reviews/entities/review.entity';
+import { Store } from '../../stores/entities/store.entity';
 
 @Entity({ tableName: 'products' })
 export class Product {

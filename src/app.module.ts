@@ -3,6 +3,8 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { ConfigModule } from '@nestjs/config';
 import { MikroORM } from '@mikro-orm/core';
 
+import { AppController } from './app.controller';
+
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 
 import { CategoriesModule } from './_features/categories/categories.module';
@@ -37,7 +39,7 @@ import { LanguagesModule } from './_features/languages/languages.module';
     StoresModule,
     LanguagesModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule implements NestModule {

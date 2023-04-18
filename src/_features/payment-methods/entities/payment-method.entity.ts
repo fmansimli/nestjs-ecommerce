@@ -1,6 +1,6 @@
 import { Entity, Property, PrimaryKey, OneToMany, Collection } from '@mikro-orm/core';
 
-import { Payment } from 'src/_features/payments/entities/payment.entity';
+import { Payment } from '../../payments/entities/payment.entity';
 
 @Entity({ tableName: 'payment_methods' })
 export class PaymentMethod {

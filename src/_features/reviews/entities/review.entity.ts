@@ -1,7 +1,7 @@
 import { Property, PrimaryKey, Entity, ManyToOne } from '@mikro-orm/core';
 
-import { Product } from 'src/_features/products/entities/product.entity';
-import { Customer } from 'src/_features/customers/entities/customer.entity';
+import { Product } from '../../products/entities/product.entity';
+import { Customer } from '../../customers/entities/customer.entity';
 
 @Entity({ tableName: 'product_reviews' })
 export class Review {

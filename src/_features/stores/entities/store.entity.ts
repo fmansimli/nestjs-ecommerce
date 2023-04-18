@@ -1,6 +1,6 @@
 import { Entity, PrimaryKey, Property, OneToMany, OneToOne, Collection } from '@mikro-orm/core';
 
-import { Address } from 'src/_features/addresses/entities/address.entity';
+import { Address } from '../../addresses/entities/address.entity';
 import { Product } from '../../products/entities/product.entity';
 
 @Entity({ tableName: 'stores' })

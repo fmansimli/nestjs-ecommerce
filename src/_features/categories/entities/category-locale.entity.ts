@@ -1,6 +1,6 @@
 import { Property, PrimaryKey, Entity, ManyToOne, Cascade } from '@mikro-orm/core';
 
-import { Language } from 'src/_features/languages/entities/language.entity';
+import { Language } from '../../languages/entities/language.entity';
 import { Category } from './category.entity';
 
 @Entity({ tableName: 'category_locales' })

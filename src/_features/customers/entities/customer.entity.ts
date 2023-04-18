@@ -1,7 +1,7 @@
 import { Entity, PrimaryKey, OneToMany, Property, Collection } from '@mikro-orm/core';
 
-import { Order } from 'src/_features/orders/entities/order.entity';
-import { Review } from 'src/_features/reviews/entities/review.entity';
+import { Order } from '../../orders/entities/order.entity';
+import { Review } from '../../reviews/entities/review.entity';
 
 @Entity({ tableName: 'customers' })
 export class Customer {

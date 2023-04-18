@@ -1,5 +1,4 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, Query } from '@nestjs/common';
-import {} from '@nestjs/common';
 import { NotFoundException } from '@nestjs/common/exceptions';
 
 import { CategoriesService } from './categories.service';
