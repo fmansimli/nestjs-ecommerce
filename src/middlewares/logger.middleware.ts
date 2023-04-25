@@ -6,7 +6,7 @@ export class LoggerMiddleware implements NestMiddleware {
   async use(req: Request, _res: Response, next: (_error?: any) => void) {
     const _url = req.originalUrl;
 
-    console.log('from custom logger middleware', _url);
+    //console.log('from custom logger middleware', _url);
 
     next();
   }

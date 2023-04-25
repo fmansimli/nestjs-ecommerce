@@ -3,7 +3,7 @@ import { PostgreSqlDriver } from '@mikro-orm/postgresql';
 import { TSMigrationGenerator } from '@mikro-orm/migrations';
 import { join } from 'path';
 
-export default {
+const config: Parameters<typeof MikroORM.init>[0] = {
   type: 'postgresql',
   entities: [join(__dirname, '/**/*.entity{.ts,.js}')],
   driver: PostgreSqlDriver,
@@ -12,7 +12,7 @@ export default {
   password: process.env.DB_PASSWORD,
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
-  debug: true,
+  debug: process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'production',
   migrations: {
     tableName: 'mikro_orm_migrations',
     pathTs: './migrations',
@@ -25,4 +25,6 @@ export default {
     safe: true,
     generator: TSMigrationGenerator,
   },
-} as Parameters<typeof MikroORM.init>[0];
+};
+
+export default config;

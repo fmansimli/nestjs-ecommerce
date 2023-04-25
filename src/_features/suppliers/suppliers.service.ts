@@ -52,7 +52,6 @@ export class SuppliersService {
 
   async update(id: number, body: UpdateSupplierDto) {
     const { address, ...attrs } = body;
-    console.log(address);
 
     const supplier = await this.repo.findOne({ id }, { populate: ['address'] });
     if (!supplier) return null;
