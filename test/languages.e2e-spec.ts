@@ -42,7 +42,7 @@ describe('Languages Controller (e2e)', () => {
       expect(body.updatedAt).toBeDefined();
       //
     } catch (error) {
-      expect(false);
+      throw error;
     }
   });
 
@@ -60,7 +60,7 @@ describe('Languages Controller (e2e)', () => {
       expect(firstRecord.name).toBe(LANGUAGE.name);
       expect(firstRecord.prefix).toBe(LANGUAGE.prefix);
     } catch (error) {
-      expect(false);
+      throw error;
     }
   });
 
@@ -76,7 +76,7 @@ describe('Languages Controller (e2e)', () => {
       expect(body.createdAt).toBeDefined();
       expect(body.updatedAt).toBeDefined();
     } catch (error) {
-      expect(false);
+      throw error;
     }
   });
 
@@ -101,7 +101,7 @@ describe('Languages Controller (e2e)', () => {
       expect(body.createdAt).toBeDefined();
       expect(body.updatedAt).toBeDefined();
     } catch (error) {
-      expect(false);
+      throw error;
     }
   });
 
@@ -117,7 +117,7 @@ describe('Languages Controller (e2e)', () => {
       expect(body.createdAt).toBeDefined();
       expect(body.updatedAt).toBeDefined();
     } catch (error) {
-      expect(false);
+      throw error;
     }
   });
 
@@ -127,7 +127,7 @@ describe('Languages Controller (e2e)', () => {
         .delete('/api/v1/languages/' + LANGUAGE.id)
         .expect(404);
     } catch (error) {
-      expect(false);
+      throw error;
     }
   });
 });
