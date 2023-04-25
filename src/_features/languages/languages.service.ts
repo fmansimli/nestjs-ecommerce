@@ -16,7 +16,7 @@ export class LanguagesService {
   }
 
   async findAll(query?: QueryLangDto) {
-    const { fields } = query;
+    const { fields } = query || {};
 
     const languages = await this.repo.findAll({ fields: fields as any });
 
@@ -24,7 +24,7 @@ export class LanguagesService {
   }
 
   async findOne(id: number, query?: QueryLangDto) {
-    const { fields } = query;
+    const { fields } = query || {};
 
     const language = await this.repo.findOne({ id }, { fields: fields as any });
     return language;
@@ -35,7 +35,7 @@ export class LanguagesService {
     if (!language) return null;
 
     this.repo.assign(language, attrs);
-    this.repo.flush();
+    await this.repo.flush();
     return language;
   }
 
