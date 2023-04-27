@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { EntityRepository } from '@mikro-orm/postgresql';
 
-import { Password } from 'src/utils';
+import { Password } from '../../utils';
 
 import { User } from './user.entity';
 import { CreateUserDto, UpdateUserDto } from './dto';
